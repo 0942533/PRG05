@@ -7,7 +7,6 @@
     <title>{{config('app.name', 'Lotties')}}</title>
 </head>
 <body>
-<h1>About</h1>
+    @yield('content')
 </body>
 </html>
-
