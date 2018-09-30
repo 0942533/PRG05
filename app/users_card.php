@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class admin extends Model
+class users_card extends Model
 {
     //
 }
