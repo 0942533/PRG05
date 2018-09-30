@@ -10,7 +10,4 @@ class PagesController extends Controller
         // Het gaat kijken in de pages folder voor een index.blade.php
         return view('pages.index');
     }
-    public function about() {
-        return view('pages.about');
-    }
 }

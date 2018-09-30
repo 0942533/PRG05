@@ -20,6 +20,5 @@ Route::get('/', function () {
 // De naam van de controller @naamvandefunctie
 Route::get('/', 'PagesController@index');
 
-Route::get('/about', 'PagesController@about');
 
 
