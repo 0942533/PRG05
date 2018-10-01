@@ -5,7 +5,7 @@
     @if (count($cards)>0)
         @foreach($cards as $card)
             <div class="well">
-                <h3><a href="/cards/{{$card->id}}">{{$card->title}}</a></h3>
+                <h3><a href="{{url('cards/'. $card->id)}}">{{$card->title}}</a></h3>
                 <small>Written on{{$card->created_at}}</small>
             </div>
         @endforeach
