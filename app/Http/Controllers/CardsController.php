@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Cards;
 
 class CardsController extends Controller
 {
@@ -13,7 +14,9 @@ class CardsController extends Controller
      */
     public function index()
     {
-        //
+        $cards = Cards::all();
+        //laden van de view
+        return view('cards.index')->with('cards',$cards);
     }
 
     /**
@@ -45,7 +48,8 @@ class CardsController extends Controller
      */
     public function show($id)
     {
-        //
+        $card = Cards::find($id);
+        return view('cards.show')->with('card',$card);
     }
 
     /**
