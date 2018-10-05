@@ -1,15 +1,19 @@
 @extends ('layouts.app')
 
 @section ('content')
-    <h1>Cards</h1>
+    <h1>De leukste gelegenheidskaarten</h1>
+
     @if (count($cards)>0)
-        @foreach($cards as $card)
-            <div class="well">
-                <h3><a href="{{url('cards/'. $card->id)}}">{{$card->title}}</a></h3>
+        <div class="container text-center" id="container-index">
+            <div class="row">
+                @foreach($cards as $card)
+                    <div class="col-sm">
+                        <h5><a href="{{url('cards/'. $card->id)}}">{{$card->title}}</a></h5>
+                    </div>
+                @endforeach
             </div>
-        @endforeach
+        </div>
     @else
         <p>No card fount</p>
     @endif
 @endsection
-

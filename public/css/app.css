@@ -399,7 +399,7 @@ h6,
 
 h1,
 .h1 {
-  font-size: 2.25rem;
+  font-size: 20px;
 }
 
 h2,
@@ -10468,15 +10468,39 @@ a.text-dark:focus {
 
 nav {
   border-bottom: 1px solid rgba(0, 0, 0, 0.13);
+  margin-bottom: 40px;
+}
+
+.navbar-brand {
+  margin-left: 15px;
+}
+
+.navbar-nav {
+  margin-right: 10px;
+}
+
+.container {
+  padding: 0;
+}
+
+h1 {
+  margin-bottom: 40px;
+}
+
+.col-sm {
+  margin-right: 30px;
+  margin-left: 30px;
+  background-color: red;
 }
 
 footer {
+  margin-top: 40px;
   background-color: lightgray;
   border-bottom: 1px solid rgba(0, 0, 0, 0.13);
   border-top: 1px solid rgba(0, 0, 0, 0.13);
 }
 
 .footer-copyright {
-  margin-left: 200px;
+  margin-left: 15%;
 }
 

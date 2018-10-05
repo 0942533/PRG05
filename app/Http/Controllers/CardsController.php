@@ -26,7 +26,8 @@ class CardsController extends Controller
      */
     public function create()
     {
-        //
+        //Load a cards.create view
+        return view('cards.create');
     }
 
     /**
@@ -37,7 +38,11 @@ class CardsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Create a new card using the request data
+
+        // Save it to the database
+
+        // And then redirect
     }
 
     /**

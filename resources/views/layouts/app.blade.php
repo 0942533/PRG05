@@ -9,7 +9,12 @@
 </head>
 <body>
     @include ('inc.navbar')
+
+    <div class="container text-center">
     @yield('content')
+    </div><!-- END container -->
+
     @include('inc.footer')
 </body>
 </html>
+
