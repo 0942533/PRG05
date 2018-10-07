@@ -11,6 +11,10 @@ Route::get('/', 'CardsController@index');
 
 Route::resource('cards','CardsController');
 
+Auth::routes();
+
+Route::get('/dashboard', 'DashboardController@index');
+
 //if you visit cards/create URL, I'll reference a create method
 //Route::get('/cards/create', 'CardsController@create');
 //When we respond to a post request, trigger store
@@ -20,6 +24,4 @@ Route::resource('cards','CardsController');
 
 
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
