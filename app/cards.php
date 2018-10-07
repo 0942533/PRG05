@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cards extends Model
 {
-    // Table Name
-    protected $table = 'cards';
-    // Primary key
-    public $primaryKey = 'id';
+    // Hiermee geef je de velden aan die niet aangepast mogen worden
+    protected $quarded = [];
 }

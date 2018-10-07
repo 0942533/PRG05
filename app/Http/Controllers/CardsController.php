@@ -26,7 +26,7 @@ class CardsController extends Controller
      */
     public function create()
     {
-        //Load a cards.create view
+        //Load the create.blade.php view file
         return view('cards.create');
     }
 
@@ -38,11 +38,29 @@ class CardsController extends Controller
      */
     public function store(Request $request)
     {
+        //Before you request a post, validate the data
+        $this->validate($request, [
+            'title' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'format' => 'required',
+            'category' => 'required'
+        ]);
+
         // Create a new card using the request data
+        $card = new Cards([
+            'title' => $request->get('title'),
+            'description' => $request->get('description'),
+            'price' => $request->get('price'),
+            'format' => $request->get('format'),
+            'category' => $request->get('category')
+        ]);
 
-        // Save it to the database
+        // Save it
+        $card ->save();
 
-        // And then redirect
+        // And then redirect to ()
+        return redirect('/');
     }
 
     /**

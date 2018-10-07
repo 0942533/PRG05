@@ -19,3 +19,7 @@ Route::resource('cards','CardsController');
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
