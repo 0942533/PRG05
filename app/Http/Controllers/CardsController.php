@@ -6,7 +6,16 @@ use Illuminate\Http\Request;
 use App\Cards;
 
 class CardsController extends Controller
-{
+{   /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    // Dit zorgt ervoor dat als je niet ben ingelogd, je eruit wordt geschopt
+    public function __construct()
+    {
+        $this->middleware('auth',['except' =>['index','show']]);
+    }
     /**
      * Display a listing of the resource.
      *
