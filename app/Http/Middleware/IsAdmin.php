@@ -16,7 +16,7 @@ class IsAdmin
     public function handle($request, Closure $next)
     {
        //this method will redirect to dashboard, and administrator to dashboard admin
-        if(auth()->check() && $request->user()->admin ==0) {
+        if(auth()->check() && $request->user()->admin == 0) {
             return redirect()->guest('dashboard');
         }
         return $next($request);

@@ -16,6 +16,7 @@ class CreateUsersCardsTable extends Migration
         Schema::create('users_cards', function (Blueprint $table) {
             $table->string('users_id');
             $table->string('card_id');
+            $table->timestamps();
         });
     }
 

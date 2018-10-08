@@ -16,6 +16,7 @@ class CreateCategoriesCardsTable extends Migration
         Schema::create('categories_cards', function (Blueprint $table) {
             $table->string('category_id');
             $table->string('card_id');
+            $table->timestamps();
         });
     }
 
