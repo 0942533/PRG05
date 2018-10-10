@@ -69,7 +69,7 @@ class CardsController extends Controller
         $card ->save();
 
         // And then redirect to ()
-        return redirect('/');
+        return redirect('/')->with('info','Bestelling is succesvol geplaats!');
     }
 
     /**
@@ -93,6 +93,8 @@ class CardsController extends Controller
     public function edit($id)
     {
         //
+        $card = Cards::find($id);
+        return view('cards.edit')->with('card',$card);
     }
 
     /**
@@ -104,7 +106,28 @@ class CardsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Before you request a post, validate the data
+        $this->validate($request, [
+            'title' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'format' => 'required',
+            'category' => 'required'
+        ]);
+
+        // Create a new card using the request data
+        $card = Cards::find($id);
+        $card->title = $request->input('title');
+        $card->description = $request->input('description');
+        $card->price = $request->input('price');
+        $card->format = $request->input('format');
+        $card->category = $request->input('category');
+
+        // Save it
+        $card ->save();
+
+        // And then redirect to ()
+        return redirect('/')->with('info','Bestelling is succesvol aangepast!');
     }
 
     /**
@@ -116,5 +139,8 @@ class CardsController extends Controller
     public function destroy($id)
     {
         //
+        $card = Cards::find($id);
+        $card->delete();
+        return redirect('/')->with('info','Bestelling is succesvol verwijderd!');
     }
 }

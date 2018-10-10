@@ -1,42 +1,54 @@
 @extends ('layouts.app')
 
 @section ('content')
-    <h1>Create</h1>
-    <hr>
-    <form method="POST" action="{{url('cards')}}">
-        @csrf
+    <div class="container" id="container-index">
+        <h1>Bestelling toevoegen</h1>
+        <hr>
+        <p>Voeg een nieuwe bestelling toe aan de tabel.</p>
 
-        <div class="form-group">
-            <label for="titel">Titel</label>
-            <input type="text" class="form-control" name="title">
-        </div>
-        <div class="form-group">
-            <label for="omschrijving">Omschrijving</label>
-            <input type="text" class="form-control" name="description">
-        </div>
-        <div class="form-group">
-            <label for="prijs">Prijs</label>
-            <input type="text" class="form-control" name="price">
-        </div>
-        <div class="form-group">
-            <label for="formaat">Formaat</label>
-            <input type="text" class="form-control" name="format">
-        </div>
-        <div class="form-group">
-            <label for="categorie">Categorie</label>
-            <input type="text" class="form-control" name="category">
+        <div class="row button-previous">
+            <div class="col-6">
+                <a href="{{url('/cards')}}" class="btn btn-success" role="button">< terug naar overzicht bestellingen</a>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="exampleInputFile">File input</label>
-            <input type="file" id="exampleInputFile">
-        </div>
+        <form method="POST" action="{{url('cards')}}">
+            @csrf
 
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Opslaan</button>
-        </div>
+            <div class="row" id="form-create">
+                <div class="col-6">
+                    <label for="titel">Titel:</label>
+                    <input type="text" class="form-control" name="title">
+                </div>
+                <div class="col-6">
+                    <label for="omschrijving">Omschrijving:</label>
+                    <input type="text" class="form-control" name="description">
+                </div>
+                <div class="col-6">
+                    <label for="prijs">Prijs:</label>
+                    <input type="text" class="form-control" name="price">
+                </div>
+                <div class="col-6">
+                    <label for="formaat">Formaat:</label>
+                    <input type="text" class="form-control" name="format">
+                </div>
+                <div class="col-6">
+                    <label for="categorie">Categorie:</label>
+                    <input type="text" class="form-control" name="category">
+                </div>
 
-        @include('layouts.errors')
+                <div class="col-6">
+                    <label for="InputFile">Afbeelding:</label></br>
+                    <input type="file" name="img">
+                </div>
 
-    </form>
+                <div class="col-6">
+                    <button type="submit" class="btn btn-primary">Opslaan</button>
+                </div>
+            </div><!-- End row -->
+
+            @include('layouts.errors')
+
+        </form>
+    </div><!-- End container -->
 @endsection

@@ -15,7 +15,7 @@ nav {
   padding:0;
 }
 
-h1 {
+#h1-index {
   margin-bottom:40px;
   text-align:center;
 }
@@ -35,5 +35,14 @@ footer {
 
 .footer-copyright {
   margin-left:15%;
+}
+
+#form-create .col-6, .button-previous {
+  margin-bottom:20px;
+}
+
+#info-message {
+  margin-bottom:20px;
+  color:green;
 }
 

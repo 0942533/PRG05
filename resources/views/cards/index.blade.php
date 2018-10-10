@@ -1,7 +1,7 @@
 @extends ('layouts.app')
 
 @section ('content')
-    <h1>De leukste gelegenheidskaarten</h1>
+    <h1 id="h1-index">De leukste gelegenheidskaarten</h1>
 
     @if (count($cards)>0)
         <div class="container text-center" id="container-index">
@@ -17,3 +17,4 @@
         <p>No card fount</p>
     @endif
 @endsection
+

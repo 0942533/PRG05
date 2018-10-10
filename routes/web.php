@@ -5,15 +5,13 @@ Route::get('/', function () {
 });
 */
 
-// De naam van de controller @naamvandefunctie
-//Route::get('cards/{id}', 'CardsController@show');
+Route::get('/', 'CardsController@index');
 
 Route::resource('cards','CardsController');
 
 Auth::routes();
 
 Route::group(['middleware' => ['web','auth']], function(){
-    Route::get('/', 'CardsController@index');
 
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
@@ -27,10 +25,6 @@ Route::group(['middleware' => ['web','auth']], function(){
     });
 });
 
-//if you visit cards/create URL, I'll reference a create method
-//Route::get('/cards/create', 'CardsController@create');
-//When we respond to a post request, trigger store
-//Route::post('/cards', 'CardsController@store');
 
 
 
