@@ -66,9 +66,10 @@ class CardsController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);;
             //Get just ext
             $extension = $request->file('cover_image')->getClientOriginalExtension();
-            //Filename to store
+            // This will call the original filename_timestamp which makes the filename completely unique ->
+            // so It's not gonna overwrite
             $fileNameToStore= $filename.'_'.time().'.'.$extension;
-            // Upload image
+            // Upload image. There will be created a folder called: public/cover_images if it doesn't excists
             $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
         }
 
@@ -139,9 +140,10 @@ class CardsController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);;
             //Get just ext
             $extension = $request->file('cover_image')->getClientOriginalExtension();
-            //Filename to store
+            // This will call the original filename_timestamp which makes the filename completely unique ->
+            // so It's not gonna overwrite
             $fileNameToStore= $filename.'_'.time().'.'.$extension;
-            // Upload image
+            // Upload image. There will be created a folder called: public/cover_images if it doesn't excists
             $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
         }
 
