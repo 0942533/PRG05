@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Cards;
 
 class CardsController extends Controller
@@ -53,17 +54,32 @@ class CardsController extends Controller
             'description' => 'required',
             'price' => 'required',
             'format' => 'required',
-            'category' => 'required'
+            'category' => 'required',
+            'cover_image' => 'required|image'
         ]);
 
+        // Handle file upload
+        if($request->hasFile('cover_image')) {
+            //Get filename with the extension
+            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+            //Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);;
+            //Get just ext
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+            //Filename to store
+            $fileNameToStore= $filename.'_'.time().'.'.$extension;
+            // Upload image
+            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+        }
+
         // Create a new card using the request data
-        $card = new Cards([
-            'title' => $request->get('title'),
-            'description' => $request->get('description'),
-            'price' => $request->get('price'),
-            'format' => $request->get('format'),
-            'category' => $request->get('category')
-        ]);
+        $card = new Cards;
+        $card->title = $request->input('title');
+        $card->description = $request->input('description');
+        $card->price = $request->input('price');
+        $card->format = $request->input('format');
+        $card->category = $request->input('category');
+        $card->cover_image = $fileNameToStore;
 
         // Save it
         $card ->save();
@@ -115,6 +131,20 @@ class CardsController extends Controller
             'category' => 'required'
         ]);
 
+        // Handle file upload
+        if($request->hasFile('cover_image')) {
+            //Get filename with the extension
+            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+            //Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);;
+            //Get just ext
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+            //Filename to store
+            $fileNameToStore= $filename.'_'.time().'.'.$extension;
+            // Upload image
+            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+        }
+
         // Create a new card using the request data
         $card = Cards::find($id);
         $card->title = $request->input('title');
@@ -122,6 +152,9 @@ class CardsController extends Controller
         $card->price = $request->input('price');
         $card->format = $request->input('format');
         $card->category = $request->input('category');
+        if($request->hasFile('cover_image')){
+            $card->cover_image = $fileNameToStore;
+        }
 
         // Save it
         $card ->save();
@@ -140,7 +173,12 @@ class CardsController extends Controller
     {
         //
         $card = Cards::find($id);
+
+        Storage::delete('public/cover_images/'.$card->cover_image);
+
         $card->delete();
         return redirect('/')->with('info','Bestelling is succesvol verwijderd!');
+
+
     }
 }

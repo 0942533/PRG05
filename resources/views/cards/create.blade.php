@@ -12,7 +12,8 @@
             </div>
         </div>
 
-        <form method="POST" action="{{url('cards')}}">
+        <!-- Als je een file submit, moet je standaard een enc type attribute aan je formulier toevoegen. -->
+        <form method="POST" enctype="multipart/form-data" action="{{url('cards')}}">
             @csrf
 
             <div class="row" id="form-create">
@@ -38,8 +39,9 @@
                 </div>
 
                 <div class="col-6">
+                    <!-- Als je een file submit, moet je standaard een enc type attribute aan je formulier toevoegen. -->
                     <label for="InputFile">Afbeelding:</label></br>
-                    <input type="file" name="img">
+                    <input type="file" name="cover_image">
                 </div>
 
                 <div class="col-6">

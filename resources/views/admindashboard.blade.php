@@ -51,7 +51,7 @@
                         <td>{{ $card->price }}</td>
                         <td>{{ $card->format }}</td>
                         <td>{{ $card->category }}</td>
-                        <td>{{ $card->image }}</td>
+                        <td>{{ $card->cover_image }}</td>
                         <td>
                             <a href="{{url('cards/'.$card->id.'/edit')}}" class="btn btn-success">Aanpassen</a>
                             <form action="{{ url ('cards/'.$card->id) }}" method="post">
@@ -67,4 +67,3 @@
         @endif
     </div><!-- End container -->
 @endsection
-

@@ -20,9 +20,8 @@ class CreateCardsTable extends Migration
             $table->string('price');
             $table->string('format');
             $table->string('category');
-            $table->string('image');
-            $table->string('user');
             $table->timestamps();
+
         });
     }
 

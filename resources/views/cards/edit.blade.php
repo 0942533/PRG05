@@ -12,7 +12,7 @@
             {{--</div>--}}
         {{--</div>--}}
 
-        <form method="POST" action="{{ url('cards/'.$card->id) }}">
+        <form method="POST" enctype="multipart/form-data" action="{{ url('cards/'.$card->id) }}">
             {{ method_field('PUT') }}
             @csrf
 
@@ -40,7 +40,7 @@
 
                 <div class="col-6">
                     <label for="InputFile">Afbeelding:</label><br>
-                    <input type="file" name="image" value="{{ $card->image }}>
+                    <input type="file" name="cover_image">
                 </div>
 
                 <div class="col-6">
