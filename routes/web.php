@@ -8,6 +8,7 @@ Route::get('/', function () {
 Route::get('/', 'CardsController@index');
 
 Route::resource('cards','CardsController');
+Route::get('index/search', 'CardsController@search')->name('index.search');
 
 Auth::routes();
 

@@ -10,6 +10,7 @@
     <title>{{ config('app.name', 'Lotties') }}</title>
 
     <!-- Scripts -->
+    <script src="{{ asset('js/jquery-3.3.1.min') }}"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
