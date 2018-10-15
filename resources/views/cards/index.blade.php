@@ -1,82 +1,20 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends ('layouts.app')
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+@section ('content')
+    <h1 id="h1-index">De leukste gelegenheidskaarten</h1>
 
-    <title>{{ config('app.name', 'Lotties') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/jquery-3.3.1.min') }}"></script>
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body>
-<div class="form-group">
-    <input type="text" name="search" id="search" class="form-control" placeholder="Search customer data" />
-</div>
-
-<table class="table">
-    <thead>
-    <tr>
-        <th>Nr</th>
-        <th>Titel</th>
-        <th>Beschrijving</th>
-        <th>Prijs</th>
-        <th>Formaat</th>
-        <th>Categorie</th>
-        <th>Afbeelding</th>
-        <th>Actie</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach ($cards as $card)
-        <tbody>
-        <tr>
-            <td>{{ $card->id }}</td>
-            <td>{{ $card->title }}</td>
-            <td>{{ $card->description }}</td>
-            <td>{{ $card->price }}</td>
-            <td>{{ $card->format }}</td>
-            <td>{{ $card->category }}</td>
-            <td>{{ $card->cover_image }}</td>
-        </tr>
-        @endforeach
-        </tbody>
-</table>
-
-</body>
-</html>
-
-<script type="text/javascript">
-    $('#search').on('keyup',function() {
-        $value = $(this).val();
-
-        $.ajax ({
-            url: '{{ url('CardsController.search') }}',
-            type: 'get',
-            data: {'search':$value},
-            success:function(data){
-                $('tbody').html(data);
-            }
-        });
-    });
-</script>
-
-<script type="text/javascript">
-
-    $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
-
-</script>
-
-
-
+    @if (count($cards)>0)
+        <div class="container text-center" id="container-index">
+            <div class="row">
+                @foreach($cards as $card)
+                    <div class="col-4">
+                        <h5><a href="{{url('cards/'. $card->id)}}">{{$card->title}}</a></h5>
+                        <img id="images_index" src="{{url('/storage/cover_images/'.$card->cover_image)}}">
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @else
+        <p>No card fount</p>
+    @endif
+@endsection

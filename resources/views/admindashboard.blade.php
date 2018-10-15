@@ -21,6 +21,14 @@
         <hr>
         <p>Hier kunt u de reserveringen beheren die bij u zijn gedaan.</p>
 
+        <div class="form-group">
+            <form action="{{url('search')}}" method="post">
+                {{csrf_field()}}
+                <input type="text" class="form-controller" id="search" name="search"/>
+                <button id="search" name="submit">search</button>
+            </form>
+        </div>
+
         @if(session('info'))
             <div class="col-6 row" id="info-message">
                 {{ session('info') }}
@@ -67,3 +75,24 @@
         @endif
     </div><!-- End container -->
 @endsection
+
+<script type="text/javascript">
+    $('#search').on('keyup', function () {
+        $value = $(this).val();
+
+        $.ajax({
+            url: '{{ url('CardsController.search') }}',
+            type: 'get',
+            data: {'search': $value},
+            success: function (data) {
+                $('tbody').html(data);
+            }
+        });
+    });
+</script>
+
+<script type="text/javascript">
+
+    $.ajaxSetup({headers: {'csrftoken': '{{ csrf_token() }}'}});
+
+</script>

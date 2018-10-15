@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\DB;
 use App\Cards;
 
 
 class CardsController extends Controller
-{   /**
+{
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -17,8 +18,9 @@ class CardsController extends Controller
     // Dit zorgt ervoor dat als je niet ben ingelogd, je eruit wordt geschopt
     public function __construct()
     {
-        $this->middleware('auth',['except' =>['index','show']]);
+        $this->middleware('auth', ['except' => ['index', 'show']]);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -28,36 +30,7 @@ class CardsController extends Controller
     {
         $cards = Cards::all();
         //laden van de view
-        return view('cards.index')->with('cards',$cards);
-    }
-
-    public function search(Request $request)
-    {
-        if($request->ajax())
-        {
-            $output="";
-            $cards=DB::table('cards')
-                    ->where('title','LIKE','%'.$request->search."%")
-                    ->orWhere('description','LIKE','%'.$request->search."%")
-                    ->orWhere('price','LIKE','%'.$request->search."%")
-                    ->orWhere('format','LIKE','%'.$request->search."%")
-                    ->get();
-
-            if($cards)
-            {
-                foreach ($cards as $key => $card) {
-                    $output.=
-                        '<tr>'.
-                        '<td>'.$card->id.'</td>'.
-                        '<td>'.$card->title.'</td>'.
-                        '<td>'.$card->description.'</td>'.
-                        '<td>'.$card->price.'</td>'.
-                        '<td>'.$card->format.'</td>'.
-                        '</tr>';
-                }
-            }
-            return Response($output);
-        }
+        return view('cards.index')->with('cards', $cards);
     }
 
     /**
@@ -204,14 +177,11 @@ class CardsController extends Controller
      */
     public function destroy($id)
     {
-        //
         $card = Cards::find($id);
 
         Storage::delete('public/cover_images/'.$card->cover_image);
 
         $card->delete();
         return redirect('/')->with('info','Bestelling is succesvol verwijderd!');
-
-
     }
 }
