@@ -76,23 +76,23 @@
     </div><!-- End container -->
 @endsection
 
-<script type="text/javascript">
-    $('#search').on('keyup', function () {
-        $value = $(this).val();
+{{--<script type="text/javascript">--}}
+    {{--$('#search').on('keyup', function () {--}}
+        {{--$value = $(this).val();--}}
 
-        $.ajax({
-            url: '{{ url('CardsController.search') }}',
-            type: 'get',
-            data: {'search': $value},
-            success: function (data) {
-                $('tbody').html(data);
-            }
-        });
-    });
-</script>
+        {{--$.ajax({--}}
+            {{--url: '{{ url('CardsController.search') }}',--}}
+            {{--type: 'get',--}}
+            {{--data: {'search': $value},--}}
+            {{--success: function (data) {--}}
+                {{--$('tbody').html(data);--}}
+            {{--}--}}
+        {{--});--}}
+    {{--});--}}
+{{--</script>--}}
 
-<script type="text/javascript">
+{{--<script type="text/javascript">--}}
 
-    $.ajaxSetup({headers: {'csrftoken': '{{ csrf_token() }}'}});
+    {{--$.ajaxSetup({headers: {'csrftoken': '{{ csrf_token() }}'}});--}}
 
-</script>
+{{--</script>--}}

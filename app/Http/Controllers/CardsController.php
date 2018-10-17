@@ -184,4 +184,11 @@ class CardsController extends Controller
         $card->delete();
         return redirect('/')->with('info','Bestelling is succesvol verwijderd!');
     }
+
+    public function tags()
+    {
+        // Any card may have many tags
+        // Any tag may be applied to many cards
+        return $this->belongsToMany(Tag::class);
+    }
 }

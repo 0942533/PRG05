@@ -35,7 +35,11 @@
                 </div>
                 <div class="col-6">
                     <label for="categorie">Categorie:</label>
-                    <input type="text" class="form-control" name="category">
+                    <select>
+                        <option value="verjaardag">Verjaardag</option>
+                        <option value="felicitatie">Felicitatie</option>
+                        <option value="uitnodiging">Uitnodiging</option>
+                    </select>
                 </div>
 
                 <div class="col-6">
