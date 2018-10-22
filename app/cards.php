@@ -12,7 +12,19 @@ class Cards extends Model
         'price',
         'format',
         'category',
+        'image',
+        'user'
     ];
-    // Hiermee geef je de velden aan die niet aangepast mogen worden
-//    protected $quarded = [];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    // Likes is plural because one card can have multiple likes
+    public function likes()
+    {
+        return $this->hasMany('App\Like');
+    }
+
 }

@@ -11,6 +11,12 @@
                         <h5><a href="{{url('cards/'. $card->id)}}">{{$card->title}}</a></h5>
                         <img id="images_index" src="{{url('/storage/cover_images/'.$card->cover_image)}}">
                     </div>
+
+                    <div class="row">
+                        <a href="" class="like">DisLike</a>
+                        <a href="" class="like">DisLike</a>
+                    </div>
+
                 @endforeach
             </div>
         </div>
@@ -18,3 +24,10 @@
         <p>No card fount</p>
     @endif
 @endsection
+
+<script>
+    var token = '{{ Session::token() }}';
+    var urlLike = '{{ route('like') }}';
+</script>
+
+
