@@ -18,12 +18,3 @@ Route::group(['middleware' => ['web','auth']], function()
 {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 });
-
-
-
-
-
-
-
-
-

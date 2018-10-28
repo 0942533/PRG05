@@ -27,14 +27,9 @@ class User extends Model implements Authenticatable
         'password', 'remember_token',
     ];
 
-    public function card()
+    public function cards()
     {
         return $this->hasMany('App\Cards');
-    }
-    // Likes is plural because one user can like multiple cards
-    public function likes()
-    {
-        return $this->hasMany('App\Like');
     }
 }
 

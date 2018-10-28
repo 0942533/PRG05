@@ -59,7 +59,7 @@
                         <td>{{ $card->price }}</td>
                         <td>{{ $card->format }}</td>
                         <td>{{ $card->category }}</td>
-                        <td>{{ $card->cover_image }}</td>
+                        {{--<td>{{ $card->cover_image }}</td>--}}
                         <td>
                             <a href="{{url('cards/'.$card->id.'/edit')}}" class="btn btn-success">Aanpassen</a>
                             <form action="{{ url ('cards/'.$card->id) }}" method="post">
@@ -75,24 +75,3 @@
         @endif
     </div><!-- End container -->
 @endsection
-
-{{--<script type="text/javascript">--}}
-    {{--$('#search').on('keyup', function () {--}}
-        {{--$value = $(this).val();--}}
-
-        {{--$.ajax({--}}
-            {{--url: '{{ url('CardsController.search') }}',--}}
-            {{--type: 'get',--}}
-            {{--data: {'search': $value},--}}
-            {{--success: function (data) {--}}
-                {{--$('tbody').html(data);--}}
-            {{--}--}}
-        {{--});--}}
-    {{--});--}}
-{{--</script>--}}
-
-{{--<script type="text/javascript">--}}
-
-    {{--$.ajaxSetup({headers: {'csrftoken': '{{ csrf_token() }}'}});--}}
-
-{{--</script>--}}

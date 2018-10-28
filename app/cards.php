@@ -16,14 +16,8 @@ class Cards extends Model
         'user'
     ];
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo('App\User');
-    }
-
-    // Likes is plural because one card can have multiple likes
-    public function likes()
-    {
-        return $this->hasMany('App\Like');
+        return $this->belongsToMany('App\User');
     }
 }
