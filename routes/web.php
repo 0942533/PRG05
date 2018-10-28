@@ -9,16 +9,17 @@ Route::get('/', 'CardsController@index');
 
 Route::resource('cards','CardsController');
 
-//Route::post('search', 'CardsController@search');
 Route::post('search', 'DashboardController@search');
+Route::post('search/filter', 'SearchController@dropdownfilter');
 
 Auth::routes();
 
-Route::group(['middleware' => ['web','auth']], function(){
-
+Route::group(['middleware' => ['web','auth']], function()
+{
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-
 });
+
+
 
 
 

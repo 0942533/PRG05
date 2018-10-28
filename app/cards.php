@@ -26,5 +26,4 @@ class Cards extends Model
     {
         return $this->hasMany('App\Like');
     }
-
 }

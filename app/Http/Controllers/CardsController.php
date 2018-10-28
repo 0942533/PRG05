@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Like;
+use App\Cards;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Storage;
-use App\Cards;
-use App\Like;
-
-
 
 class CardsController extends Controller
 {
@@ -185,12 +186,5 @@ class CardsController extends Controller
 
         $card->delete();
         return redirect('/')->with('info','Bestelling is succesvol verwijderd!');
-    }
-
-    public function tags()
-    {
-        // Any card may have many tags
-        // Any tag may be applied to many cards
-        return $this->belongsToMany(Tag::class);
     }
 }

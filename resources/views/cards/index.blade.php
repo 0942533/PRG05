@@ -3,20 +3,29 @@
 @section ('content')
     <h1 id="h1-index">De leukste gelegenheidskaarten</h1>
 
-    @if (count($cards)>0)
+    <form method="post" action="{{url('search/filter')}}">
+        {{csrf_field()}}
+        <select name="dropdownfilter">
+            <option value="" disabled selected>Kies een categorie:</option>
+            <option value="verjaardag">verjaardag</option>
+            <option value="uitnodiging">uitnodiging</option>
+            <option value="beterschap">beterschap</option>
+        </select>
+
+        <button class="btn btn-primary sm" name="submit">Zoeken</button>
+
+    </form>
+
+@if (count($cards)>0)
         <div class="container text-center" id="container-index">
             <div class="row">
                 @foreach($cards as $card)
-                    <div class="col-4">
-                        <h5><a href="{{url('cards/'. $card->id)}}">{{$card->title}}</a></h5>
-                        <img id="images_index" src="{{url('/storage/cover_images/'.$card->cover_image)}}">
-                    </div>
-
-                    <div class="row">
-                        <a href="" class="like">DisLike</a>
-                        <a href="" class="like">DisLike</a>
-                    </div>
-
+                    <article data-cardid="{{ $card->id }}">
+                        <div class="col-4">
+                            <h5><a href="{{url('cards/'. $card->id)}}">{{$card->title}}</a></h5>
+                            {{--<img id="images_index" src="{{url('/storage/cover_images/'.$card->cover_image)}}">--}}
+                        </div>
+                    </article>
                 @endforeach
             </div>
         </div>
@@ -25,9 +34,5 @@
     @endif
 @endsection
 
-<script>
-    var token = '{{ Session::token() }}';
-    var urlLike = '{{ route('like') }}';
-</script>
 
 
