@@ -5,14 +5,20 @@ Route::get('/', function () {
 });
 */
 
-Route::get('/', 'CardsController@index');
+Auth::routes();
 
-Route::resource('cards','CardsController');
+Route::get('/', 'CardController@index');
+
+Route::resource('cards','CardController');
 
 Route::post('search', 'DashboardController@search');
 Route::post('search/filter', 'SearchController@dropdownfilter');
 
-Auth::routes();
+Route::get('favorite', 'FavoriteController@index');
+
+Route::group(['middleware'=>['auth']], function(){
+    Route::post('favorite/{cards}/add','FavoriteController@add')->name('cards.favorite');
+});
 
 Route::group(['middleware' => ['web','auth']], function()
 {

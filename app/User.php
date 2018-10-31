@@ -29,7 +29,11 @@ class User extends Model implements Authenticatable
 
     public function cards()
     {
-        return $this->hasMany('App\Cards');
+        return $this->hasMany('App\Card');
+    }
+
+    public function favorite_cards() {
+        return $this->belongsToMany('App\Card')->withTimestamps();
     }
 }
 

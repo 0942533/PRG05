@@ -2,16 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Like;
-use App\Cards;
-
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
+use App\Card;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
-class CardsController extends Controller
+class CardController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -31,7 +25,7 @@ class CardsController extends Controller
      */
     public function index()
     {
-        $cards = Cards::all();
+        $cards = Card::all();
         //laden van de view
         return view('cards.index')->with('cards', $cards);
     }
@@ -81,7 +75,7 @@ class CardsController extends Controller
         }
 
         // Create a new card using the request data
-        $card = new Cards;
+        $card = new Card;
         $card->title = $request->input('title');
         $card->description = $request->input('description');
         $card->price = $request->input('price');
@@ -104,7 +98,7 @@ class CardsController extends Controller
      */
     public function show($id)
     {
-        $card = Cards::find($id);
+        $card = Card::find($id);
         return view('cards.show')->with('card',$card);
     }
 
@@ -117,7 +111,7 @@ class CardsController extends Controller
     public function edit($id)
     {
         //
-        $card = Cards::find($id);
+        $card = Card::find($id);
         return view('cards.edit')->with('card',$card);
     }
 
@@ -155,7 +149,7 @@ class CardsController extends Controller
         }
 
         // Create a new card using the request data
-        $card = Cards::find($id);
+        $card = Card::find($id);
         $card->title = $request->input('title');
         $card->description = $request->input('description');
         $card->price = $request->input('price');
@@ -180,7 +174,7 @@ class CardsController extends Controller
      */
     public function destroy($id)
     {
-        $card = Cards::find($id);
+        $card = Card::find($id);
 
         Storage::delete('public/cover_images/'.$card->cover_image);
 

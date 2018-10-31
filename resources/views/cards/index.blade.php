@@ -13,7 +13,6 @@
         </select>
 
         <button class="btn btn-primary sm" name="submit">Zoeken</button>
-
     </form>
 
 @if (count($cards)>0)
@@ -25,6 +24,30 @@
                             <h5><a href="{{url('cards/'. $card->id)}}">{{$card->title}}</a></h5>
                             {{--<img id="images_index" src="{{url('/storage/cover_images/'.$card->cover_image)}}">--}}
                         </div>
+
+                        <li>
+                            @guest()
+                                <a href="javascript:void(0);" onclick="console.log('Je bent een bezoeker')">
+                                    <i class="fa fa-heart-o"></i>
+                                    {{ $card->favorite_to_users->count() }}
+                                </a>
+                            @else
+                            <a href="javascript:void(0);" onclick="document.getElementById('favorite-form-{{ $card->id }}').submit();">
+                                <i class="fa fa-heart-o"></i>
+                                {{ $card->favorite_to_users->count() }}
+                            </a>
+                            <form id="favorite-form-{{ $card->id }}" method="post" action="{{ route('cards.favorite',$card->id) }}" style="display:none;">
+                                @csrf
+                            </form>
+                            @endguest
+                        </li>
+
+                        {{--@if(session()->has('message'))--}}
+                            {{--<div class="alert alert-success">--}}
+                                {{--{{ session()->get('message') }}--}}
+                            {{--</div>--}}
+                        {{--@endif--}}
+
                     </article>
                 @endforeach
             </div>

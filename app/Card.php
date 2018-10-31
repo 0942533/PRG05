@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cards extends Model
+class Card extends Model
 {
     protected $fillable = [
         'title',
@@ -16,8 +16,13 @@ class Cards extends Model
         'user'
     ];
 
-    public function users()
+    public function user()
     {
-        return $this->belongsToMany('App\User');
+        return $this->belongsTo('App\User');
+    }
+
+    public function favorite_to_users()
+    {
+        return $this->belongsToMany('App\User')->withTimestamps();
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Cards;
+use App\Card;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -30,7 +30,7 @@ class DashboardController extends Controller
             $users['users'] = \App\User::all();
             return view('dashboard', $users);
         }else{
-            $cards = Cards::all();
+            $cards = Card::all();
             return view('admindashboard')->with('cards', $cards);
         }
     }
