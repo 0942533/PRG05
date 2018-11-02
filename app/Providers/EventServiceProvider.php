@@ -14,10 +14,14 @@ class EventServiceProvider extends ServiceProvider
      *
      * @var array
      */
+
+    // Contains an array of all events (keys) and their listeners(values)
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
-        ],
+        // Event(keys)
+        'Illuminate\Auth\Events\Login' => [
+            // Listener(value)
+            'App\Handlers\Events\AuthLoginEventHandler'
+        ]
     ];
 
     /**

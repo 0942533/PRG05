@@ -12,18 +12,28 @@ class FavoriteController extends Controller
         return view('cards.favorite', compact('cards'));
     }
 
-    public function add($card)
+    public function add(Request $request)
     {
         $user = Auth::user();
-        $isFavorite = $user->favorite_cards()->where('card_id','$card')->count();
 
-        if ($isFavorite == 0)
-        {
-            $user->favorite_cards()->attach($card);
-            return redirect()->back()->with('message', 'post successfully added to your favorite list');
-        } else {
-            $user->favorite_cards()->detach($card);
-            return redirect()->back()->with ('message', 'post succesfully removed from you favorite list');
+        if($user['number_of_logins'] >= 5) {
+
+            $isFavorite = $user->favorites()->where('card_id', $request->id)->count();
+
+            if ($isFavorite == 0)
+            {
+                $user->favorites()->attach($request->id);
+                return 1;
+
+            } else {
+                $user->favorites()->detach($request->id);
+                return 0;
+            }
         }
+
+        else {
+            return 2;
+        }
+
     }
 }

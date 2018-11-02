@@ -20,7 +20,6 @@ class CreateCardsTable extends Migration
             $table->string('price');
             $table->string('format');
             $table->string('category');
-            $table->integer('user_id');
             $table->timestamps();
         });
     }

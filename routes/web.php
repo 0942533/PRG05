@@ -17,7 +17,7 @@ Route::post('search/filter', 'SearchController@dropdownfilter');
 Route::get('favorite', 'FavoriteController@index');
 
 Route::group(['middleware'=>['auth']], function(){
-    Route::post('favorite/{cards}/add','FavoriteController@add')->name('cards.favorite');
+    Route::post('favorite/add','FavoriteController@add')->name('cards.favorite');
 });
 
 Route::group(['middleware' => ['web','auth']], function()

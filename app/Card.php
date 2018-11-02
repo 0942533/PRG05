@@ -16,13 +16,13 @@ class Card extends Model
         'user'
     ];
 
-    public function user()
+    public function favorites()
     {
-        return $this->belongsTo('App\User');
-    }
-
-    public function favorite_to_users()
-    {
-        return $this->belongsToMany('App\User')->withTimestamps();
+        return $this->belongsToMany(
+            User::class,
+            'card_user',
+            'card_id',
+            'user_id'
+        )->withTimestamps();
     }
 }

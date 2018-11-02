@@ -33,5 +33,6 @@
 
         @include('inc.footer')
     </div>
+    @stack('scripts')
 </body>
 </html>

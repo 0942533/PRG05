@@ -32,8 +32,13 @@ class User extends Model implements Authenticatable
         return $this->hasMany('App\Card');
     }
 
-    public function favorite_cards() {
-        return $this->belongsToMany('App\Card')->withTimestamps();
+    public function favorites() {
+        return $this->belongsToMany(
+            Card::class,
+            'card_user',
+            'user_id',
+            'card_id'
+            )->withTimestamps();
     }
 }
 
