@@ -29,6 +29,19 @@
             </form>
         </div>
 
+        <form method="post" action="{{url('search/filter')}}">
+            {{csrf_field()}}
+            <select name="dropdownfilter">
+                <option value="" disabled selected>Kies een categorie:</option>
+                <option value="alles">alles</option>
+                <option value="verjaardag">verjaardag</option>
+                <option value="uitnodiging">uitnodiging</option>
+                <option value="beterschap">beterschap</option>
+            </select>
+
+            <button class="btn btn-primary sm" name="submit">Zoeken</button>
+        </form>
+
         @if(session('info'))
             <div class="col-6 row" id="info-message">
                 {{ session('info') }}

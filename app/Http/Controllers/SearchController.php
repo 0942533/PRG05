@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+Use Illuminate\Support\Facades\Auth;
+use App\Card;
 
 class SearchController extends Controller
 {
@@ -13,6 +15,10 @@ class SearchController extends Controller
                     ->where('category','LIKE','%'.$search."%")
                     ->get();
 
-        return view('cards/index')->with('cards', $category);
+        if($search == "alles") {
+            return redirect('dashboard');
+        }
+
+        return view('admindashboard')->with('cards', $category);
     }
 }

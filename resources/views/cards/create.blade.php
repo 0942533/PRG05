@@ -35,10 +35,10 @@
                 </div>
                 <div class="col-6">
                     <label for="categorie">Categorie:</label>
-                    <select>
-                        <option value="verjaardag">Verjaardag</option>
-                        <option value="felicitatie">Felicitatie</option>
-                        <option value="uitnodiging">Uitnodiging</option>
+                    <select name="category">
+                        <option name="verjaardag" value="verjaardag">Verjaardag</option>
+                        <option name="uitnodiging" value="felicitatie">Uitnodiging</option>
+                        <option name="beterschap" value="uitnodiging">Beterschap</option>
                     </select>
                 </div>
 

@@ -9,9 +9,9 @@
                 <th>Titel:</th>
             </tr>
 
-            @foreach($cards as $key=>$card)
+            @foreach($cards as $card)
                 <tr>
-                    <td>{{ $card->title }}</td>
+                    <td>{{ Auth::user()->name }}</td>
                 </tr>
             @endforeach
         </table>

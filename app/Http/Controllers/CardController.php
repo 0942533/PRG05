@@ -26,6 +26,7 @@ class CardController extends Controller
     public function index()
     {
         $cards = Card::all();
+
         //laden van de view
         return view('cards.index')->with('cards', $cards);
     }
@@ -56,7 +57,7 @@ class CardController extends Controller
             'price' => 'required',
             'format' => 'required',
             'category' => 'required',
-            'cover_image' => 'required|image'
+//            'cover_image' => 'required|image'
         ]);
 
         // Handle file upload
@@ -80,8 +81,8 @@ class CardController extends Controller
         $card->description = $request->input('description');
         $card->price = $request->input('price');
         $card->format = $request->input('format');
-        $card->category = $request->input('category');
-        $card->cover_image = $fileNameToStore;
+        $card->category = $request->category;
+//        $card->cover_image = $fileNameToStore;
 
         // Save it
         $card ->save();
@@ -176,7 +177,7 @@ class CardController extends Controller
     {
         $card = Card::find($id);
 
-        Storage::delete('public/cover_images/'.$card->cover_image);
+//        Storage::delete('public/cover_images/'.$card->cover_image);
 
         $card->delete();
         return redirect('/')->with('info','Bestelling is succesvol verwijderd!');

@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 class FavoriteController extends Controller
 {
     public function index() {
-        $cards = Auth::user()->favorite_cards;
-        return view('cards.favorite', compact('cards'));
+        $cards = Auth::user()->favorites();
+        return view('cards.favorite', compact('card'));
     }
 
     public function add(Request $request)

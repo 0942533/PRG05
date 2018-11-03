@@ -25,4 +25,10 @@ class Card extends Model
             'user_id'
         )->withTimestamps();
     }
+
+    //Cards have many comments
+    public function comments() {
+        return $this->hasMany('App\Comment');
+    }
+
 }

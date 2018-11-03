@@ -40,5 +40,15 @@ class User extends Model implements Authenticatable
             'card_id'
             )->withTimestamps();
     }
+
+    public function hasFavorited($user_id){
+
+        // Haal alle cards op
+        $cards = Card::all();
+
+        foreach ($this->cards()->get() as $card){
+
+        }
+    }
 }
 

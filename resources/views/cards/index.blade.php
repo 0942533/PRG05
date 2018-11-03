@@ -3,18 +3,6 @@
 @section ('content')
     <h1 id="h1-index">De leukste gelegenheidskaarten</h1>
 
-    <form method="post" action="{{url('search/filter')}}">
-        {{csrf_field()}}
-        <select name="dropdownfilter">
-            <option value="" disabled selected>Kies een categorie:</option>
-            <option value="verjaardag">verjaardag</option>
-            <option value="uitnodiging">uitnodiging</option>
-            <option value="beterschap">beterschap</option>
-        </select>
-
-        <button class="btn btn-primary sm" name="submit">Zoeken</button>
-    </form>
-
 @if (count($cards)>0)
         <div class="container text-center" id="container-index">
             <div class="row">
@@ -67,12 +55,15 @@
 
                         let cardFav = $('.favorites[data-id=' + $(element).data('id') + ']');
                         let count = cardFav.text();
+                        let heart = $('.heart[data-id=' + $(element).data('id') + ']');
 
                         if(response == 1) {
                             cardFav.text(parseInt(count) + 1);
+                            $(heart).addClass('red');
                         }
                         else if(response == 0) {
                             cardFav.text(parseInt(count) - 1);
+                            $(heart).removeClass('red');
                         }
                         else if(response == 2) {
                             swal({
