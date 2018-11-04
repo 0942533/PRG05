@@ -39,7 +39,6 @@ class CommentsController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:255',
-            'email' => 'required|max:255',
             'comment' => 'required|min:5|max:2000'
         ]);
 
@@ -48,7 +47,7 @@ class CommentsController extends Controller
         $comment = new Comment();
         $comment->name = $request->input('name');
         $comment->user_id = Auth()->user()->id;
-        $comment->email = $request->input('email');
+        $comment->email = Auth()->user()->email;
         $comment->comment = $request->input('comment');
         $comment->approved = true;
         $comment->card()->associate($card);
@@ -101,8 +100,6 @@ class CommentsController extends Controller
     public function destroy($id)
     {
         $comment_id = Comment::find($id);
-
-//        $comment_id = Comment::where('id', $id)->get();
 
         if(auth()->user()->id !== $comment_id->user_id && auth()->user()->admin !== 1) {
             return redirect()->route('cards.index', [$comment_id->post_id])->with('error', 'unauthorized!');

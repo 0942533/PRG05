@@ -18,15 +18,22 @@ Route::post('search/filter', 'SearchController@dropdownfilter');
 // Favorite
 Route::group(['middleware'=>['auth']], function(){
     Route::post('favorite/add','FavoriteController@add')->name('cards.favorite');
-    Route::resource('favorites', 'ShowFavoriteController');
 });
 
 //Dashboard
 Route::group(['middleware' => ['web','auth']], function()
 {
-    Route::post('/dashboard', 'DashboardController@store');
-    Route::get('/dashboard/{id}', 'DashboardController@show')->name('dashboard.show');
-    Route::put('/dashboard/{id}', 'DashboardController@update')->name('dashboard.update');
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+});
+
+// EditProfile
+Route::group(['middleware' => ['web','auth']], function() {
+    Route::get('/editProfile','ProfileController@index');
+
+    Route::post('/editProfile', 'ProfileController@store');
+    Route::get('/editProfile/{id}', 'ProfileController@show')->name('editProfile.show');
+    Route::put('/editProfile/{id}', 'ProfileController@update')->name('editProfile.update');
+
 });
 
 // Comments

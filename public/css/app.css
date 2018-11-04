@@ -12315,6 +12315,8 @@ nav {
 #h1-index {
   margin-bottom: 40px;
   text-align: center;
+  font-weight: bold;
+  color: #87be3c;
 }
 
 .col-sm {
@@ -12355,5 +12357,55 @@ footer {
 #logo {
   width: 100px;
   height: 40px;
+}
+
+#images_index {
+  width: 220px;
+  height: 220px;
+}
+
+#images_show {
+  width: 300px;
+  height: 300px;
+}
+
+article {
+  margin-left: 20px;
+}
+
+.text-left {
+  float: left;
+}
+
+#article-text {
+  padding: 30px;
+  width: 200px;
+  min-height: 250px;
+  background-color: white;
+  border: 1px #87be3c solid;
+  border-radius: 5px;
+  text-align: left;
+}
+
+#h1-left {
+  font-size: 25px;
+  text-align: left;
+  margin-bottom: 40px;
+  font-weight: bold;
+  color: #87be3c;
+}
+
+h2 {
+  font-size: 14px;
+}
+
+#h2-first {
+  color: #87be3c;
+  font-size: 18px;
+}
+
+.reacties {
+  margin-top: 20px;
+  text-align: left;
 }
 

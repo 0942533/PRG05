@@ -8,24 +8,6 @@
             </div>
         @endif
 
-        <form method="POST" enctype="multipart/form-data" action="{{ route('dashboard.update',$user->id) }}">
-            {{ method_field('PUT') }}
-            @csrf
-            <div class="row" id="form-create">
-                <div class="col-6">
-                    <label for="titel">Naam:</label>
-                    <input type="text" name="name" value="{{ $user->name }}" class="form-control">
-                </div>
-                <div class="col-6">
-                    <label for="email">Email:</label>
-                    <input type="email" name="email" value="{{ $user->email }}" class="form-control">
-                </div>
-                <div class="col-6">
-                    <button type="submit" class="btn btn-primary">Opslaan</button>
-                </div>
-            </div><!-- End row -->
-        </form>
-
-    </div><!-- End container -->
+        <h1>Dit is het dashboard</h1>
 
 @endsection

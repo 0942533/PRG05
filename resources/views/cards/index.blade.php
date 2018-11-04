@@ -9,11 +9,11 @@
                 @foreach($cards as $card)
                     <article data-cardid="{{ $card->id }}">
                         <div class="col-4">
-                            <h5><a href="{{ url('cards/'. $card->id) }}">{{$card->title}}</a></h5>
-                            <img id="images_index" src="{{url('/storage/cover_images/'.$card->cover_image)}}">
+                           <a href="{{ url('cards/'. $card->id) }}">
+                                <img id="images_index" src="{{url('/storage/cover_images/'.$card->cover_image)}}">
+                           </a>
                         </div>
 
-                        <li>
                             @guest()
                                 {{--<a href="javascript:void(0);" onclick="console.log('Je bent een bezoeker')">--}}
                                     <i class="fa fa-heart-o"></i>
@@ -21,27 +21,25 @@
                                 {{--</a>--}}
                             @else
                             {{--<a href="javascript:void(0);" onclick="document.getElementById('favorite-form-{{ $card->id }}').submit();">--}}
-                                <i class="fa fa-heart-o heart" data-id="{{ $card->id }}"></i>
+                                <i class="fa fa-heart-o heart iets" data-id="{{ $card->id }}"></i>
                                 <span class="favorites" data-id="{{ $card->id }}">{{ $card->favorites()->count() }}</span>
                             {{--</a>--}}
                             <form id="favorite-form-{{ $card->id }}" method="post" action="{{ route('cards.favorite',$card->id) }}" style="display:none;">
                                 @csrf
                             </form>
                             @endguest
-                        </li>
                     </article>
                 @endforeach
             </div>
         </div>
     @else
-        <p>No card fount</p>
+        <p>Er zijn geen kaarten gevonden</p>
     @endif
 @endsection
 
 @push('scripts')
     <script>
         $(function() {
-
             $('.heart').click( function () {
                 let element = this
                 $.ajax({
@@ -75,35 +73,8 @@
                         }
                     }
                 })
-//                document.querySelectorAll('.heart').forEach(function (element) {
-//                    element.addEventListener('click',function () {
-//                        alert($(this).data("id"));
-//                    })
-//                })
             });
         });
-
-
-        {{--$.ajax({--}}
-            {{--url: 'favorite/{id}/add',--}}
-            {{--type:'GET',--}}
-            {{--data: {id: {{$card->id}} },--}}
-            {{--success: function(response)--}}
-            {{--{--}}
-                {{--$('#something'.html(response);--}}
-            {{--}--}}
-        {{--});--}}
-
-        // Script netjes in een ander document plaatsen
-
-
-        // Ajax request
-        // welk element is aangeklikt? Event listener eraan koppelen
-
-        // pak data id uit dat element (want de id moet dynamisch zijn)
-
-        // jquery een post naar de add (toggle) route
-            // https://api.jquery.com/jquery.post/
     </script>
 @endpush
 

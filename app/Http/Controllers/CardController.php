@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Card;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CardController extends Controller
 {
@@ -82,7 +83,7 @@ class CardController extends Controller
         $card->price = $request->input('price');
         $card->format = $request->input('format');
         $card->category = $request->category;
-//        $card->cover_image = $fileNameToStore;
+        $card->cover_image = $fileNameToStore;
 
         // Save it
         $card ->save();
@@ -131,7 +132,7 @@ class CardController extends Controller
             'description' => 'required',
             'price' => 'required',
             'format' => 'required',
-            'category' => 'required'
+            'category' => 'required',
         ]);
 
         // Handle file upload
