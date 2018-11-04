@@ -10,19 +10,11 @@
                     <p>Name: {{ $comment->name }}</p>
                     <p>Comment: <br/>{{ $comment->comment }}</p>
 
-                    @if(Auth::user()->id == $comment->user_id)
+                    @if(Auth::user()->id == $comment->user_id || Auth::user()->admin ==1)
                         <form action="{{ route ('comments.destroy', $comment->id) }}" method="post">
                             {{ method_field('DELETE') }}
                             {{ csrf_field() }}
                             <button class="btn btn-danger">Verwijderen</button>
-                        </form>
-                    @endif
-
-                    @if(Auth::user()->admin == 1)
-                        <form action="{{ route ('comments.destroy', $comment->id) }}" method="post">
-                            {{ method_field('DELETE') }}
-                            {{ csrf_field() }}
-                            <button class="btn btn-warning">Admin verwijderen</button>
                         </form>
                     @endif
                 </div>

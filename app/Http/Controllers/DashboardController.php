@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Card;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -27,7 +28,7 @@ class DashboardController extends Controller
     public function index()
     {
         if(Auth::user()->admin == 0 ){
-            $users['users'] = \App\User::all();
+            $users['users'] = User::all();
             return view('dashboard', $users);
         }else{
             $cards = Card::all();
@@ -47,5 +48,48 @@ class DashboardController extends Controller
                     ->get();
 
         return view('admindashboard')->with('cards', $cards);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $user_id = auth()->user->id;
+        $user_requested = $id;
+        $users = User::find($id);
+
+        // Als user_id gelijk is aan het id van de user die iets wilt aanpassen
+        if($user_id == $user_requested){
+            return view('dashboard')->with('user', $users);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $this->validate($request,[
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users,email'
+        ]);
+
+        $users = User::find($id);
+        $users->name = $request->input('name');
+        $users->email = $request->input('email');
+
+        $users->save();
+
+        return redirect()->back();
     }
 }

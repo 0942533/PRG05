@@ -11,18 +11,21 @@ Route::get('/', 'CardController@index');
 
 Route::resource('cards','CardController');
 
+
+
 Route::post('search', 'DashboardController@search');
 Route::post('search/filter', 'SearchController@dropdownfilter');
 
+Route::resource('favorites', 'ShowFavoriteController');
 
+// Favorite
 Route::group(['middleware'=>['auth']], function(){
     Route::post('favorite/add','FavoriteController@add')->name('cards.favorite');
-    Route::resource('favorite', 'FavoriteController@index');
 });
 
 Route::group(['middleware' => ['web','auth']], function()
 {
-    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+    Route::resource('/dashboard', 'DashboardController');
 });
 
 // Comments

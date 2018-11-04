@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 Use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Favorite;
 
 class FavoriteController extends Controller
 {
@@ -34,6 +35,5 @@ class FavoriteController extends Controller
         else {
             return 2;
         }
-
     }
 }
