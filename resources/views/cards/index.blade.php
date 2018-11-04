@@ -9,8 +9,8 @@
                 @foreach($cards as $card)
                     <article data-cardid="{{ $card->id }}">
                         <div class="col-4">
-                            <h5><a href="{{url('cards/'. $card->id)}}">{{$card->title}}</a></h5>
-                            {{--<img id="images_index" src="{{url('/storage/cover_images/'.$card->cover_image)}}">--}}
+                            <h5><a href="{{ url('cards/'. $card->id) }}">{{$card->title}}</a></h5>
+                            <img id="images_index" src="{{url('/storage/cover_images/'.$card->cover_image)}}">
                         </div>
 
                         <li>

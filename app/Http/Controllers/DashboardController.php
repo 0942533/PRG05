@@ -58,16 +58,32 @@ class DashboardController extends Controller
      */
     public function edit($id)
     {
-        $user_id = auth()->user->id;
-        $user_requested = $id;
-        $users = User::find($id);
+//        $user_id = auth()->user->id;
+//        $user_requested = $id;
+//        $users = User::find($id);
+//
+//        // Als user_id gelijk is aan het id van de user die iets wilt aanpassen
+//        if($user_id == $user_requested){
+//            return view('dashboard')->with('user', $users);
+//        } else {
+//            return redirect()->back();
+//        }
+    }
 
-        // Als user_id gelijk is aan het id van de user die iets wilt aanpassen
-        if($user_id == $user_requested){
-            return view('dashboard')->with('user', $users);
+    public function show($id) {
+
+//        return $id;
+
+        $user = User::find($id);
+
+        $user_id = auth()->user()->id;
+        $user_req = $id;
+
+        if($user_id == $user_req) {
+            return view('dashboard')->with('user', $user);
         } else {
-            return redirect()->back();
-        }
+                return redirect('/')->with('error', 'Unauthorized Page');
+            }
     }
 
     /**
@@ -79,10 +95,11 @@ class DashboardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users,email'
-        ]);
+//        return $id;
+//        $this->validate($request,[
+//            'name' => 'required|max:255',
+//            'email' => 'required|email|max:255|unique:users,email'
+//        ]);
 
         $users = User::find($id);
         $users->name = $request->input('name');

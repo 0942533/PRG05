@@ -57,7 +57,7 @@ class CardController extends Controller
             'price' => 'required',
             'format' => 'required',
             'category' => 'required',
-//            'cover_image' => 'required|image'
+            'cover_image' => 'required|image|max:1999'
         ]);
 
         // Handle file upload
@@ -177,7 +177,7 @@ class CardController extends Controller
     {
         $card = Card::find($id);
 
-//        Storage::delete('public/cover_images/'.$card->cover_image);
+        Storage::delete('public/cover_images/'.$card->cover_image);
 
         $card->delete();
         return redirect('/')->with('info','Bestelling is succesvol verwijderd!');

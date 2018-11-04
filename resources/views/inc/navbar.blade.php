@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-md navbar-light">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name', 'Lotties') }}
+            {{--{{ config('app.name', 'Lotties') }}--}}
+            <img id="logo" src="{{url('/storage/logo-lotties.png')}}">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
@@ -33,7 +34,7 @@
                                 <a class="dropdown-item" href="{{url('dashboard')}}">Overzicht bestellingen</a>
 
                                 <a class="dropdown-item" href="{{ url('favorites') }}">Overzicht favorieten</a>
-                                <a class="dropdown-item" href="{{ url('dashboard') }}">Profiel aanpassen</a>
+                                <a class="dropdown-item" href="{{ route('dashboard.show',Auth::user()->id) }}">Profiel aanpassen</a>
 
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
